@@ -41,9 +41,17 @@ function onBegin() {
   questionEl.classList.remove("hidden");
 }
 
-questionSubmit.addEventListener("click", onSubmit);
+questionSubmit.addEventListener("click", function(){
+    if(questionIndex >= questionsArray.length-1){
+        onEnd();
+    }
+    else{
+        questionIndex++
+        populateQuestionPanel();
+    }
+});
 
-function onSubmit() {
+function onEnd() {
   questionEl.classList.add("hidden");
   quizEnd.classList.remove("hidden");
 }
