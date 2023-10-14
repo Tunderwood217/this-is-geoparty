@@ -21,6 +21,9 @@ var questionsArray = [
     correctAnswer: 3,
   },
 ];
+var secondsRemaining = 5;
+var timerEl = document.querySelector("#timer");
+var timerInterval;
 var promptEl = questionEl.querySelector("h2");
 var optionEl1 = document.querySelector("#option1");
 var optionEl2 = document.querySelector("#option2");
@@ -37,6 +40,14 @@ function populateQuestionPanel() {
 }
 function onBegin() {
   populateQuestionPanel();
+  timerEl.textContent = secondsRemaining;
+  timerInterval = setInterval(function(){
+    secondsRemaining--;
+    if(secondsRemaining<=0){
+        onEnd();
+    }
+    timerEl.textContent = secondsRemaining
+  }, 1000)
   startScreen.classList.add("hidden");
   questionEl.classList.remove("hidden");
 }
@@ -52,6 +63,7 @@ questionSubmit.addEventListener("click", function(){
 });
 
 function onEnd() {
+    clearInterval(timerInterval);
   questionEl.classList.add("hidden");
   quizEnd.classList.remove("hidden");
 }
