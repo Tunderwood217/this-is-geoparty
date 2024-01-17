@@ -29,6 +29,7 @@ var optionEl1 = document.querySelector("#option1");
 var optionEl2 = document.querySelector("#option2");
 var optionEl3 = document.querySelector("#option3");
 var optionEl4 = document.querySelector("#option4");
+var finalScoreEl = document.querySelector("#score");
 var scoreEl = 0;
 
 beginButton.addEventListener("click", onBegin);
@@ -92,5 +93,5 @@ function onEnd() {
     clearInterval(timerInterval);
   questionEl.classList.add("hidden");
   quizEnd.classList.remove("hidden");
-  scoreEl.textContent = scoreEl;
+  finalScoreEl.textContent = scoreEl;
 }
