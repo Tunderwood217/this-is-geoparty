@@ -31,6 +31,7 @@ var optionEl3 = document.querySelector("#option3");
 var optionEl4 = document.querySelector("#option4");
 var finalScoreEl = document.querySelector("#score");
 var scoreEl = 0;
+var resetButton = document.querySelector("#reset");
 
 beginButton.addEventListener("click", onBegin);
 function populateQuestionPanel() {
@@ -94,4 +95,15 @@ function onEnd() {
   questionEl.classList.add("hidden");
   quizEnd.classList.remove("hidden");
   finalScoreEl.textContent = scoreEl;
+}
+
+resetButton.addEventListener("click", onReset); 
+
+function onReset(){
+    quizEnd.classList.add("hidden");
+    startScreen.classList.remove("hidden");
+    questionIndex = 0;
+    scoreEl = 0;
+    secondsRemaining = 60;
+    timerEl.textContent = secondsRemaining;
 }
