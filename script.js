@@ -21,7 +21,7 @@ var questionsArray = [
     correctAnswer: 3,
   },
 ];
-var secondsRemaining = 5;
+var secondsRemaining = 60;
 var timerEl = document.querySelector("#timer");
 var timerInterval;
 var promptEl = questionEl.querySelector("h2");
@@ -29,6 +29,7 @@ var optionEl1 = document.querySelector("#option1");
 var optionEl2 = document.querySelector("#option2");
 var optionEl3 = document.querySelector("#option3");
 var optionEl4 = document.querySelector("#option4");
+var scoreEl = 0;
 
 beginButton.addEventListener("click", onBegin);
 function populateQuestionPanel() {
@@ -37,6 +38,10 @@ function populateQuestionPanel() {
   optionEl2.textContent = questionsArray[questionIndex].options[1];
   optionEl3.textContent = questionsArray[questionIndex].options[2];
   optionEl4.textContent = questionsArray[questionIndex].options[3];
+  optionEl1.addEventListener("click", onOptionClick);
+  optionEl2.addEventListener("click", onOptionClick);
+  optionEl3.addEventListener("click", onOptionClick);
+  optionEl4.addEventListener("click", onOptionClick);
 }
 function onBegin() {
   populateQuestionPanel();
@@ -52,18 +57,40 @@ function onBegin() {
   questionEl.classList.remove("hidden");
 }
 
-questionSubmit.addEventListener("click", function(){
-    if(questionIndex >= questionsArray.length-1){
-        onEnd();
-    }
-    else{
-        questionIndex++
-        populateQuestionPanel();
-    }
-});
+// questionSubmit.addEventListener("click", function(){
+//     if(questionIndex >= questionsArray.length-1){
+//         onEnd();
+//     }
+//     else{
+//         questionIndex++
+//         populateQuestionPanel();
+//     }
+// });
+
+function onOptionClick(event) {
+  var selectedOption = event.target.textContent;
+  var correctAnswer = questionsArray[questionIndex].options[
+    questionsArray[questionIndex].correctAnswer
+  ];
+  if (selectedOption === correctAnswer) {
+    alert("Correct");
+    scoreEl += 10;
+  } else {
+    alert("Incorrect");
+    secondsRemaining -= 10;
+  }
+  if (questionIndex >= questionsArray.length - 1) {
+    onEnd();
+  }
+  else{
+      questionIndex++
+      populateQuestionPanel();
+  }
+}
 
 function onEnd() {
     clearInterval(timerInterval);
   questionEl.classList.add("hidden");
   quizEnd.classList.remove("hidden");
+  scoreEl.textContent = scoreEl;
 }

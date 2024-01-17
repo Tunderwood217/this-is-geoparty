@@ -10,10 +10,10 @@
     <nav> 
         <!-- need button on this funtion -->
         <!-- directionally to the top left -->
-        <h3>view high score</h3>
+        <button>view high score</button>
         <!-- need timer on this function -->
         <!-- directionally top right -->
-        <h3 id="timer">timer/numbers</h3>
+        <h3 id="timer">Quiz Timer</h3>
     </nav>
     <!-- panel 1 -->
     <div id="welcome">
@@ -30,13 +30,18 @@
             <li id="option3">answer 3</li>
             <li id="option4">answer 4</li>
         </ul>
-        <button id="submit">submit</button>    
+        <!-- <button id="submit">submit</button>     -->
     </div>
     <!-- panel 3 -->
     <div id="result" class="hidden">
         <h1>All done</h1>
-        <h2>Your final score is</h2>
-        <h2>Record initials</h2>
+        <h2>Your final score is:</h2>
+        <div id="score"></div>
+        <!-- dislpay accounted score -->
+        <h2>Record high score</h2>
+        <input></input>
+        <button id="record" >submit</button>
+        <button id="reset">Try again</button>
     </div>
     <!-- panel 4 -->
     <div id="score" class="hidden">
