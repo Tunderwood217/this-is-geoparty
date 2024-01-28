@@ -6,22 +6,22 @@ var quizEnd = document.querySelector("#result");
 var questionIndex = 0;
 var questionsArray = [
   {
-    prompt: "Question Holder",
-    options: ["a1", "a2", "a3", "a4"],
-    correctAnswer: 2,
+    prompt: "What will the following code produce? PRINT 'Afrikom Computer School'?",
+    options: ["Apaper printed with Afrikom Computer School", "A screen printed with Afrikom Computer School", "none of the above", "An error indicated on the screen"],
+    correctAnswer: 1,
   },
   {
-    prompt: "Question Box",
-    options: ["b1", "b2", "b3", "b4"],
+    prompt: "If the English language follows formats and rules on grammar, what does QBasic follow as a counterpart?",
+    options: ["Syntax", "Strings", "Grammer", "All of the above"],
     correctAnswer: 0,
   },
   {
-    prompt: "Question Bag",
-    options: ["c1", "c2", "c3", "c4"],
+    prompt: "'Name$' is known as a ",
+    options: ["Stringer", "Constant", "Input driver", "Variable"],
     correctAnswer: 3,
   },
 ];
-var secondsRemaining = 60;
+var secondsRemaining = 45;
 var timerEl = document.querySelector("#timer");
 var timerInterval;
 var promptEl = questionEl.querySelector("h2");
@@ -34,6 +34,7 @@ var scoreEl = 0;
 var resetButton = document.querySelector("#reset");
 var recordButton = document.querySelector("#record");
 var highScoreButton = document.querySelector("#highscore");
+var initials = document.querySelector("#initials");
 // var highScoreEl = document.querySelector("#highscore");
 
 beginButton.addEventListener("click", onBegin);
@@ -78,10 +79,10 @@ function onOptionClick(event) {
     questionsArray[questionIndex].correctAnswer
   ];
   if (selectedOption === correctAnswer) {
-    alert("Correct");
+    // alert("Correct");
     scoreEl += 10;
   } else {
-    alert("Incorrect");
+    // alert("Incorrect");
     secondsRemaining -= 10;
   }
   if (questionIndex >= questionsArray.length - 1) {
@@ -102,8 +103,12 @@ function onEnd() {
 
 recordButton.addEventListener("click", onRecord);
 
-function onRecord(){
-  localStorage.setItem("score", scoreEl);
+function onRecord() {
+  var initialsValue = initials.value;
+  localStorage.setItem("score", JSON.stringify(scoreEl));
+  console.log(scoreEl);
+  localStorage.setItem("initials", JSON.stringify(initialsValue));
+  console.log(initialsValue);
 }
 
 // highScoreButton.addEventListener("click", onHighScore); {
