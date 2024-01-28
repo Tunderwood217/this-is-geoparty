@@ -32,6 +32,9 @@ var optionEl4 = document.querySelector("#option4");
 var finalScoreEl = document.querySelector("#score");
 var scoreEl = 0;
 var resetButton = document.querySelector("#reset");
+var recordButton = document.querySelector("#record");
+var highScoreButton = document.querySelector("#highscore");
+// var highScoreEl = document.querySelector("#highscore");
 
 beginButton.addEventListener("click", onBegin);
 function populateQuestionPanel() {
@@ -96,6 +99,16 @@ function onEnd() {
   quizEnd.classList.remove("hidden");
   finalScoreEl.textContent = scoreEl;
 }
+
+recordButton.addEventListener("click", onRecord);
+
+function onRecord(){
+  localStorage.setItem("score", scoreEl);
+}
+
+// highScoreButton.addEventListener("click", onHighScore); {
+//     localStorage.getItem("score", finalScoreEl);
+// }
 
 resetButton.addEventListener("click", onReset); 
 
